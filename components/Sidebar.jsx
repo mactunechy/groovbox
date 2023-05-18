@@ -50,6 +50,8 @@ const Sidebar = () => {
           src='/assets/images/logo.svg'
           alt='logo'
           className='w-full h-14 object-contain'
+          width={30}
+          height={30}
         />
         <NavLinks />
       </div>
@@ -78,6 +80,8 @@ const Sidebar = () => {
           src='/assets/images/logo.svg'
           alt='logo'
           className='w-full h-14 object-contain'
+          width={30}
+          height={30}
         />
         <NavLinks handleClick={() => setMobileMenuOpen(false)} />
       </div>

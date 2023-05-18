@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 import { Error, Loader, SongCard } from '../../components';
-import { useGetSongsByCountryQuery } from '../redux/services/shazamCore';
+import { useGetSongsByCountryQuery } from '@redux/services/shazamCore';
 
 const CountryTracks = () => {
   const [country, setCountry] = useState('');
@@ -16,9 +16,7 @@ const CountryTracks = () => {
   useEffect(() => {
     axios
       .get(
-        `https://geo.ipify.org/api/v2/country?apiKey=${
-          import.meta.env.VITE_GEO_API_KEY
-        }`
+        `https://geo.ipify.org/api/v2/country?apiKey=${process.env.NEXT_PUBLIC_GEO_API_KEY}`
       )
       .then((res) => setCountry(res?.data?.location.country))
       .catch((err) => console.log(err))
@@ -33,7 +31,7 @@ const CountryTracks = () => {
   return (
     <div className='flex flex-col'>
       <h2 className='font-bold text-3xl text-white text-left mt-4 mb-10'>
-        Around you <span className='font-black'>{country}</span>
+        Around you <span className='text-yellow-500'>{country}</span>
       </h2>
 
       <div className='flex flex-wrap sm:justify-start justify-center gap-8'>

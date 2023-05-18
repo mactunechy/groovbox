@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Seekbar from '../../components/MusicPlayer/Seekbar';
 import { SongBar } from '../../components';

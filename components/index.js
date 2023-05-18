@@ -10,6 +10,7 @@ import MusicPlayer from './MusicPlayer';
 import Loader from './Loader';
 import Error from './Error';
 import RecentlyRequested from './RecentlyRequested';
+import AppProvider from './AppProvider';
 
 export {
   TopPlay,
@@ -24,4 +25,5 @@ export {
   Loader,
   Error,
   RecentlyRequested,
+  AppProvider,
 };

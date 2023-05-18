@@ -1,7 +1,7 @@
 'use client';
 
+import Link from 'next/link';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const DetailsHeader = ({ artistId, artistData, songData }) => (
   <div className='relative w-full flex flex-col'>
@@ -25,7 +25,7 @@ const DetailsHeader = ({ artistId, artistData, songData }) => (
           {artistId ? artistData?.attributes?.name : songData?.title}
         </p>
         {!artistId && (
-          <Link to={`/artists/${songData?.artists[0]?.adamid}`}>
+          <Link href={`/artists/${songData?.artists[0]?.adamid}`}>
             <p className='text-base text-gray-400 mt-2'>{songData?.subtitle}</p>
           </Link>
         )}

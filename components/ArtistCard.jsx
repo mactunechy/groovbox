@@ -1,10 +1,9 @@
 'use client';
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const ArtistCard = ({ track }) => {
-  const navigate = useNavigate();
+  const navigate = () => {};
 
   return (
     <div
