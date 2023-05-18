@@ -16,12 +16,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const links = [
-  { name: 'Discover', to: '/', icon: HiOutlineHome },
-  { name: 'DJ Booth', to: 'dj-booth', icon: BiHeadphone },
-  { name: 'Around You', to: '/around-you', icon: HiOutlinePhotograph },
-  { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
-  { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
-  { name: 'My Profile', to: '/my-profile', icon: HiOutlineUser },
+  { name: 'Discover', to: '/app', icon: HiOutlineHome },
+  { name: 'DJ Booth', to: 'app/dj-booth', icon: BiHeadphone },
+  { name: 'Around You', to: '/app/around-you', icon: HiOutlinePhotograph },
+  { name: 'Top Artists', to: '/app/top-artists', icon: HiOutlineUserGroup },
+  { name: 'Top Charts', to: '/app/top-charts', icon: HiOutlineHashtag },
+  { name: 'My Profile', to: '/app/my-profile', icon: HiOutlineUser },
 ];
 
 const NavLinks = ({ handleClick }) => (

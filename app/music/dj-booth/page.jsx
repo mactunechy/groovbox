@@ -1,8 +1,8 @@
 'use client';
 
+import { SongBar } from '@components';
+import Seekbar from '@components/MusicPlayer/Seekbar';
 import React from 'react';
-import Seekbar from '../../components/MusicPlayer/Seekbar';
-import { SongBar } from '../../components';
 
 const DjBooth = () => {
   const data = [];
