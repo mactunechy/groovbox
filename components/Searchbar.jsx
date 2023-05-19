@@ -1,17 +1,19 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 import { FiSearch } from 'react-icons/fi';
 
 const Searchbar = () => {
-  const navigate = () => {};
+  const router = useRouter();
+
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate(`/search/${searchTerm}`);
+    router.push(`/studio/search?searchTerm=${searchTerm}`);
   };
 
   return (

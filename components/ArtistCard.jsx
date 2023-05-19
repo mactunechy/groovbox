@@ -1,14 +1,14 @@
 'use client';
 
-import React from 'react';
+import { useRouter } from 'next/navigation';
 
 const ArtistCard = ({ track }) => {
-  const navigate = () => {};
+  const router = useRouter();
 
   return (
     <div
-      className='flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'
-      onClick={() => navigate(`/artists/${track?.artists[0].adamid}`)}
+      className='flex flex-col w-[300px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'
+      onClick={() => router.push(`artists/${track?.artists[0].adamid}/details`)}
     >
       <img
         alt='song_img'

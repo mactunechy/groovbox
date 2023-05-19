@@ -6,15 +6,14 @@ import { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 
 const SignIn = () => {
-  const { data: session } = useSession();
+  const sessionResult = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    console.log(session);
-    if (session) {
-      router.replace('/music');
+    if (sessionResult?.data) {
+      router.replace('/app');
     }
-  }, [session]);
+  }, [sessionResult, router]);
 
   return (
     <div className='bg-purple-900 w-full h-screen flex justify-center items-center'>

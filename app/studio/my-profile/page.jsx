@@ -1,9 +1,15 @@
+'use client';
+
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Error, Loader, RecentlyRequested } from '../../components';
+import {
+  Error,
+  Loader,
+  RecentlyRequested,
+  ProfileDetailsHeader,
+} from '@components';
 
-import { setActiveSong, playPause } from '../redux/features/playerSlice';
-import ProfileDetailsHeader from '../../components/ProfileDetailsHeader ';
+import { setActiveSong, playPause } from '@redux/features/playerSlice';
 // import { useGetSongDetailsQuery, useGetSongRelatedQuery } from '../redux/services/shazamCore';
 
 const MyProfile = () => {

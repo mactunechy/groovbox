@@ -11,6 +11,7 @@ import Loader from './Loader';
 import Error from './Error';
 import RecentlyRequested from './RecentlyRequested';
 import AppProvider from './AppProvider';
+import ProfileDetailsHeader from './ProfileDetailsHeader ';
 
 export {
   TopPlay,
@@ -26,4 +27,5 @@ export {
   Error,
   RecentlyRequested,
   AppProvider,
+  ProfileDetailsHeader,
 };

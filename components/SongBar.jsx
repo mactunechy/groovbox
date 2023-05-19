@@ -33,7 +33,7 @@ const SongBar = ({
       />
       <div className='flex-1 flex flex-col justify-center mx-3'>
         {!artistId ? (
-          <Link href={`/songs/${song.key}`}>
+          <Link href={`/studio/songs/${song.key}/details`}>
             <p className='text-xl font-bold text-white'>{song?.title}</p>
           </Link>
         ) : (
