@@ -11,7 +11,8 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgresql://your_postgres_username:your_postgres_password@postgres:5432/your_postgres_database_name
+      DATABASE_URL: postgresql://postgres:postgres123@postgres:5432/groovbox
+
     depends_on:
       - postgres
   postgres:
@@ -20,11 +21,12 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: your_postgres_username
-      POSTGRES_PASSWORD: your_postgres_password
-      POSTGRES_DB: your_postgres_database_name
+      POSTGRES_DB: groovbox
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
     volumes:
       - postgres-data:/var/lib/postgresql/data
+
 volumes:
   postgres-data:
 

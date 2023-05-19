@@ -30,7 +30,7 @@ const SignIn = () => {
         <div className='mt-5'>
           {/* Add an outline button */}
           <button
-            onClick={() => signIn('google', { callbackUrl: '/music' })}
+            onClick={() => signIn('google', { callbackUrl: '/studio' })}
             className='flex flex-row justify-center items-center bg-white/10 rounded-lg hover:bg-purple-400 hover:border-purple-500 border-2 border-gray-400 p-5'
           >
             <FcGoogle className='w-6 h-6 mr-2' />
