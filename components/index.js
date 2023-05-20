@@ -12,6 +12,7 @@ import Error from './Error';
 import RecentlyRequested from './RecentlyRequested';
 import AppProvider from './AppProvider';
 import ProfileDetailsHeader from './ProfileDetailsHeader ';
+import PlayerFooter from './PlayerFooter';
 
 export {
   TopPlay,
@@ -28,4 +29,5 @@ export {
   RecentlyRequested,
   AppProvider,
   ProfileDetailsHeader,
+  PlayerFooter,
 };
