@@ -14,6 +14,7 @@ import AppProvider from './AppProvider';
 import ProfileDetailsHeader from './ProfileDetailsHeader ';
 import PlayerFooter from './PlayerFooter';
 import EnqueueSong from './EnqueueSong';
+import DjBoothSongBar from './DjBoothSongBar';
 
 export {
   TopPlay,
@@ -32,4 +33,5 @@ export {
   ProfileDetailsHeader,
   PlayerFooter,
   EnqueueSong,
+  DjBoothSongBar,
 };

@@ -1,39 +1,50 @@
 'use client';
 
-import { MusicPlayer, SongBar } from '@components';
+import { DjBoothSongBar, MusicPlayer } from '@components';
+import { playPause, setActiveSong } from '@redux/features/playerSlice';
+import { useUpcomingRequestsQuery } from '@redux/services/core';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { BiErrorCircle } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DjBooth = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } =
-    useSelector((state) => state.player);
+  const dispatch = useDispatch();
+  const { activeSong, currentIndex, isActive, isPlaying } = useSelector(
+    (state) => state.player
+  );
 
-  const data = [];
+  const djId = 'clhuq9lzz0000my14zmyefayv'; //TODO: this should come from the session
+  const { data, isFetching, error } = useUpcomingRequestsQuery(djId);
+
+  const handlePlayClick = (song, i) => {
+    dispatch(setActiveSong({ song, data, i }));
+    dispatch(playPause(true));
+  };
+
+  const handlePauseClick = () => {
+    dispatch(playPause(false));
+  };
+
   return (
     <div className='flex flex-col md:flex-row'>
       <div className='w-full md:w-2/3 p-4'>
-        {/* A purple translucent card qith full width and height 30% vh */}
-        <div className='bg-white/10 rounded-lg w-full min-screen-full  md:min-h-screen mt-5 flex items-center justify-center p-5'>
-          <div className='flex flex-col justify-center items-center'>
-            {activeSong?.title ? (
+        {activeSong?.title ? (
+          <div className='card w-full h-full bg-base-100 shadow-xl image-full'>
+            <figure>
+              <img src={activeSong?.images?.coverart} alt='Shoes' />
+            </figure>
+            <div className='card-body h-full'>
               <MusicPlayer />
-            ) : (
-              <div className='w-full'>
-                <div className='flex flex-col justify-center items-center'>
-                  <h1 className='font-bold text-3xl text-white'>
-                    No active song 😒
-                  </h1>
-                  <small className='text-base text-gray-400 text-center mt-2'>
-                    Play the next song to get the party started 🍻
-                  </small>
-                </div>
-              </div>
-            )}
+            </div>
           </div>
-          <div className='flex justify-center mb-5'>
-            {/* <MusicPlayer /> */}
+        ) : (
+          <div className='card w-full h-full bg-purple-950 flex items-center justify-center'>
+            <h1 className='font-bold text-3xl text-white'>No active song 😒</h1>
+            <small className='text-base text-gray-400 text-center mt-2'>
+              Play the next song to get the party started 🍻
+            </small>
           </div>
-        </div>
+        )}
       </div>
       <div className='w-full md:w-1/3 p-4'>
         <div className='flex flex-col mt-5'>
@@ -43,18 +54,26 @@ const DjBooth = () => {
           </small>
 
           <div className='mt-6 w-full flex flex-col'>
-            {data?.map((song, i) => (
-              <SongBar
-                key={`${artistId}-${song.key}-${i}`}
-                song={song}
-                i={i}
-                artistId={artistId}
-                isPlaying={isPlaying}
-                activeSong={activeSong}
-                handlePauseClick={handlePauseClick}
-                handlePlayClick={handlePlayClick}
-              />
-            ))}
+            {isFetching ? (
+              <div className='text-white texy-center'>Loading...</div>
+            ) : error ? (
+              <div className='text-white text-center h-full flex items-center justify-center'>
+                <BiErrorCircle color='red' className='mr-2' size={30} />
+                <span> There was an error fetching the songs</span>
+              </div>
+            ) : (
+              data?.map((request, i) => (
+                <DjBoothSongBar
+                  key={`${request.song.artists[0].id}-${request.key}-${i}`}
+                  song={request.song}
+                  i={i}
+                  isPlaying={isPlaying}
+                  activeSong={activeSong}
+                  handlePauseClick={handlePauseClick}
+                  handlePlayClick={() => handlePlayClick(request.song, i)}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>

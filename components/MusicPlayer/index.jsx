@@ -13,8 +13,9 @@ import Player from './Player';
 import Seekbar from './Seekbar';
 import Track from './Track';
 import VolumeBar from './VolumeBar';
+import { BsVolumeUp } from 'react-icons/bs';
 
-const MusicPlayer = ({ silent = false }) => {
+const MusicPlayer = () => {
   const { activeSong, currentSongs, currentIndex, isActive, isPlaying } =
     useSelector((state) => state.player);
   const [duration, setDuration] = useState(0);
@@ -60,57 +61,65 @@ const MusicPlayer = ({ silent = false }) => {
   };
 
   return (
-    <div className='relative sm:px-12 px-8 w-full flex items-center justify-between'>
-      <Track
-        isPlaying={isPlaying}
-        isActive={isActive}
-        activeSong={activeSong}
-      />
-      {silent ? null : (
-        <>
-          <div className='flex-1 flex flex-col items-center justify-center'>
-            <Controls
-              isPlaying={isPlaying}
-              isActive={isActive}
-              repeat={repeat}
-              setRepeat={setRepeat}
-              shuffle={shuffle}
-              setShuffle={setShuffle}
-              currentSongs={currentSongs}
-              handlePlayPause={handlePlayPause}
-              handlePrevSong={handlePrevSong}
-              handleNextSong={handleNextSong}
-              disabled={silent}
-            />
-            <Seekbar
-              value={appTime}
-              min='0'
-              max={duration}
-              onInput={(event) => setSeekTime(event.target.value)}
-              setSeekTime={setSeekTime}
-              appTime={appTime}
-            />
-            <Player
-              activeSong={activeSong}
-              volume={volume}
-              isPlaying={silent || isPlaying}
-              seekTime={seekTime}
-              repeat={repeat}
-              currentIndex={currentIndex}
-              onEnded={handleNextSong}
-              onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
-              onLoadedData={(event) => setDuration(event.target.duration)}
-            />
+    <div className='w-full flex flex-col h-full'>
+      <div className='self-start w-full'>
+        <Track
+          isPlaying={isPlaying}
+          isActive={isActive}
+          activeSong={activeSong}
+        />
+      </div>
+
+      <div className='flex-1 flex items-center justify-end'>
+        <div className='flex-1 flex flex-col items-center justify-end h-full'>
+          <Controls
+            isPlaying={isPlaying}
+            isActive={isActive}
+            repeat={repeat}
+            setRepeat={setRepeat}
+            shuffle={shuffle}
+            setShuffle={setShuffle}
+            currentSongs={currentSongs}
+            handlePlayPause={handlePlayPause}
+            handlePrevSong={handlePrevSong}
+            handleNextSong={handleNextSong}
+          />
+          <Seekbar
+            value={appTime}
+            min='0'
+            max={duration}
+            onInput={(event) => setSeekTime(event.target.value)}
+            setSeekTime={setSeekTime}
+            appTime={appTime}
+          />
+          <Player
+            activeSong={activeSong}
+            volume={volume}
+            isPlaying={isPlaying}
+            seekTime={seekTime}
+            repeat={repeat}
+            currentIndex={currentIndex}
+            onEnded={handleNextSong}
+            onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
+            onLoadedData={(event) => setDuration(event.target.duration)}
+          />
+          <div
+            className='tooltip hover:tooltip-open tooltip-bottom'
+            data-tip='volume'
+          >
+            <BsVolumeUp size={25} />
           </div>
-          <VolumeBar
+        </div>
+        <div className=''>
+          {/* <VolumeBar
             value={volume}
             min='0'
             max='1'
             onChange={(event) => setVolume(event.target.value)}
             setVolume={setVolume}
-          />
-        </>
-      )}
+          /> */}
+        </div>
+      </div>
     </div>
   );
 };

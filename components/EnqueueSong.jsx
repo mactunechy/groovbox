@@ -96,8 +96,11 @@ const EnqueueSong = ({ song }) => {
               )}
               <DjDropdown />
               <div className='modal-action'>
+                <label htmlFor={`modal-${song.key}`} className='btn'>
+                  Close
+                </label>
                 <button
-                  disabled={isLoading}
+                  disabled={isLoading || !currentDj}
                   className='btn btn-primary'
                   onClick={submitRequest}
                 >

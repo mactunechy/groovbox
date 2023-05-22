@@ -4,15 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import EnqueueSong from './EnqueueSong';
 
-const SongBar = ({
-  song,
-  i,
-  artistId,
-  isPlaying,
-  activeSong,
-  handlePauseClick,
-  handlePlayClick,
-}) => (
+const SongBar = ({ song, i, artistId, activeSong }) => (
   <div
     className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
       activeSong?.title === song?.title ? 'bg-[#4c426e]' : 'bg-transparent'

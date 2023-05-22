@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 
 export const POST = async (req) => {
   const body = await req.json();
+  console.log('-------------', body);
   let priority = new URL(req.url).searchParams.get('priority')?.toUpperCase();
 
   //Validate body against schem?.toUpperCas()
@@ -12,6 +13,8 @@ export const POST = async (req) => {
 
   if (!validate.success) {
     const { errors } = validate.error;
+
+    console.log('Invalid request', errors);
 
     return new Response(
       JSON.stringify({

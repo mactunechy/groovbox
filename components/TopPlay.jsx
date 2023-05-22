@@ -14,14 +14,7 @@ import 'swiper/css/free-mode';
 import Link from 'next/link';
 import EnqueueSong from './EnqueueSong';
 
-const TopChartCard = ({
-  song,
-  i,
-  isPlaying,
-  activeSong,
-  handlePauseClick,
-  handlePlayClick,
-}) => (
+const TopChartCard = ({ song, i, activeSong }) => (
   <div
     className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
       activeSong?.title === song?.title ? 'bg-[#4c426e]' : 'bg-transparent'

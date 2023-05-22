@@ -1,8 +1,7 @@
 import { z } from 'zod';
 
 export const SongRequestSchema = z.object({
-  songKey: z.string(),
-  title: z.string(),
-  coverUrl: z.string(),
   djId: z.string(),
+  //TODO: pin this down to a specific type
+  song: z.unknown(),
 });

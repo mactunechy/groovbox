@@ -10,8 +10,8 @@ const GenreDropdown = ({ genres, handleChange, currentGenre }) => {
         tabIndex={0}
         className='dropdown-content menu p-2 shadow bg-black text-white rounded-box w-52'
       >
-        {genres.map((genre) => (
-          <li key={genre.id} onClick={() => handleChange(genre)}>
+        {genres.map((genre, idx) => (
+          <li key={`genre-${idx}`} onClick={() => handleChange(genre)}>
             <a>{genre.title}</a>
           </li>
         ))}

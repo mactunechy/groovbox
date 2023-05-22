@@ -14,14 +14,19 @@ export const coreApi = createApi({
         url: 'requests/create',
         method: 'POST',
         body: {
-          songKey: song.key,
-          title: song.title,
-          coverUrl: song.images.coverart,
+          song,
           djId,
         },
       }),
     }),
+    upcomingRequests: builder.query({
+      query: (djId) => `requests/upcoming/${djId}`,
+    }),
   }),
 });
 
-export const { useGetAllDjsQuery, useRequestSongMutation } = coreApi;
+export const {
+  useGetAllDjsQuery,
+  useRequestSongMutation,
+  useUpcomingRequestsQuery,
+} = coreApi;
