@@ -1,8 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 
-import PlayPause from './PlayPause';
 import Link from 'next/link';
+import EnqueueSong from './EnqueueSong';
 
 const SongBar = ({
   song,
