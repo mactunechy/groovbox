@@ -5,9 +5,9 @@ import { v4 as uuid } from 'uuid';
 
 export const POST = async (req) => {
   const body = await req.json();
-  let priority = new URL(req.url).searchParams.get('priority');
+  let priority = new URL(req.url).searchParams.get('priority')?.toUpperCase();
 
-  //Validate body against schema
+  //Validate body against schem?.toUpperCas()
   const validate = SongRequestSchema.safeParse(body);
 
   if (!validate.success) {
@@ -32,9 +32,8 @@ export const POST = async (req) => {
     transactionId: 'TODO', //TODO
     id: uuid(),
     status: SONG_STATUS.PENDING,
-    priority:
-      SONG_REQUEST_PRIORITY[priority.toUpperCase()] ||
-      SONG_REQUEST_PRIORITY.STANDARD,
+    priority: SONG_REQUEST_PRIORITY[priority] || SONG_REQUEST_PRIORITY.STANDARD,
+    requestedBy: '1', //TODO: should come from session
   };
 
   await putSongRequest(songRequest);

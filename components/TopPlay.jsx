@@ -13,6 +13,7 @@ import { useGetTopChartsQuery } from '../redux/services/shazamCore';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import Link from 'next/link';
+import EnqueueSong from './EnqueueSong';
 
 const TopChartCard = ({
   song,
@@ -43,13 +44,14 @@ const TopChartCard = ({
         </Link>
       </div>
     </div>
-    <PlayPause
+    {/* <PlayPause
       isPlaying={isPlaying}
       activeSong={activeSong}
       song={song}
       handlePause={handlePauseClick}
       handlePlay={handlePlayClick}
-    />
+    /> */}
+    <EnqueueSong song={song} />
   </div>
 );
 

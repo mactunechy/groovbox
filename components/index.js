@@ -13,6 +13,7 @@ import RecentlyRequested from './RecentlyRequested';
 import AppProvider from './AppProvider';
 import ProfileDetailsHeader from './ProfileDetailsHeader ';
 import PlayerFooter from './PlayerFooter';
+import EnqueueSong from './EnqueueSong';
 
 export {
   TopPlay,
@@ -30,4 +31,5 @@ export {
   AppProvider,
   ProfileDetailsHeader,
   PlayerFooter,
+  EnqueueSong,
 };

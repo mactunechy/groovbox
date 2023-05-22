@@ -25,5 +25,13 @@
 - e.g: `PENGING`, `SKIPPED` `PLAYED` 
 
 
+## Keep track and switch between Clubs (Dj)
+- have a dropdown to switch
+
+
+
+## Prevent users from queuing the same song multiple time in a row (debouncing)
+- protect the api endpoint
+- give user a friendly message in the ui
 
 

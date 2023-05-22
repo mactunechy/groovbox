@@ -2,8 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import PlayPause from './PlayPause';
-import { playPause, setActiveSong } from '../redux/features/playerSlice';
+import { playPause, setActiveSong } from '@redux/features/playerSlice';
 import Link from 'next/link';
+import EnqueueSong from './EnqueueSong';
 
 const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch();
@@ -27,13 +28,14 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
               : 'hidden'
           }`}
         >
-          <PlayPause
+          {/* <PlayPause
             isPlaying={isPlaying}
             activeSong={activeSong}
             song={song}
             handlePause={handlePauseClick}
             handlePlay={handlePlayClick}
-          />
+          /> */}
+          <EnqueueSong song={song} />
         </div>
         <img
           alt='song_img'
