@@ -46,15 +46,7 @@ const SongBar = ({
         </p>
       </div>
     </div>
-    {!artistId ? (
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePause={handlePauseClick}
-        handlePlay={() => handlePlayClick(song, i)}
-      />
-    ) : null}
+    {!artistId ? <EnqueueSong song={song} /> : null}
   </div>
 );
 

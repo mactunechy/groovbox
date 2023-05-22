@@ -44,13 +44,6 @@ const TopChartCard = ({
         </Link>
       </div>
     </div>
-    {/* <PlayPause
-      isPlaying={isPlaying}
-      activeSong={activeSong}
-      song={song}
-      handlePause={handlePauseClick}
-      handlePlay={handlePlayClick}
-    /> */}
     <EnqueueSong song={song} />
   </div>
 );

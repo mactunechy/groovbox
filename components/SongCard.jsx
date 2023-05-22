@@ -28,13 +28,6 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
               : 'hidden'
           }`}
         >
-          {/* <PlayPause
-            isPlaying={isPlaying}
-            activeSong={activeSong}
-            song={song}
-            handlePause={handlePauseClick}
-            handlePlay={handlePlayClick}
-          /> */}
           <EnqueueSong song={song} />
         </div>
         <img
