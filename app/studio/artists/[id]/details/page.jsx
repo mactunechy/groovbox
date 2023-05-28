@@ -9,7 +9,7 @@ import { useGetArtistDetailsQuery } from '@redux/services/shazamCore';
 
 const ArtistDetails = () => {
   const { id: artistId } = useParams();
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeRequest, isPlaying } = useSelector((state) => state.player);
   const {
     data: artistData,
     isFetching: isFetchingArtistDetails,
@@ -29,7 +29,7 @@ const ArtistDetails = () => {
         data={artistData?.data[0].views['top-songs']?.data}
         artistId={artistId}
         isPlaying={isPlaying}
-        activeSong={activeSong}
+        activeRequest={activeRequest}
       />
     </div>
   );

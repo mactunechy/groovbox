@@ -5,7 +5,7 @@ import { playPause, setActiveSong } from '@redux/features/playerSlice';
 import Link from 'next/link';
 import EnqueueSong from './EnqueueSong';
 
-const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
+const SongCard = ({ song, isPlaying, activeRequest, data, i }) => {
   const dispatch = useDispatch();
 
   const handlePauseClick = () => {
@@ -22,7 +22,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
       <div className='relative w-full h-56 group'>
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            activeSong?.title === song.title
+            activeRequest?.song?.title === song.title
               ? 'flex bg-black bg-opacity-70'
               : 'hidden'
           }`}

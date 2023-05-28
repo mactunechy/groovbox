@@ -2,39 +2,52 @@
 
 import { DjBoothSongBar, MusicPlayer } from '@components';
 import { playPause, setActiveSong } from '@redux/features/playerSlice';
-import { useUpcomingRequestsQuery } from '@redux/services/core';
-import React from 'react';
+import {
+  useMarkAsPlayedMutation,
+  useUpcomingRequestsQuery,
+} from '@redux/services/core';
+import React, { use, useEffect } from 'react';
 import { BiErrorCircle } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 
 const DjBooth = () => {
   const dispatch = useDispatch();
-  const { activeSong, currentIndex, isActive, isPlaying } = useSelector(
+  const { activeRequest, currentIndex, isActive, isPlaying } = useSelector(
     (state) => state.player
   );
 
   const djId = 'clhuq9lzz0000my14zmyefayv'; //TODO: this should come from the session
-  const { data, isFetching, error } = useUpcomingRequestsQuery(djId);
+  const {
+    data,
+    isFetching,
+    error,
+    refetch: refetchSongQueue,
+  } = useUpcomingRequestsQuery(djId);
+  const [markAsPlayed, { isSuccess }] = useMarkAsPlayedMutation();
 
   const handlePlayClick = (song, i) => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
 
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
+  const handlePauseClick = () => dispatch(playPause(false));
+
+  const handleSongPlayed = () => markAsPlayed(activeRequest.id);
+
+  useEffect(() => {
+    if (isSuccess) refetchSongQueue();
+  }, [isSuccess]);
 
   return (
     <div className='flex flex-col md:flex-row'>
       <div className='w-full md:w-2/3 p-4'>
-        {activeSong?.title ? (
+        {activeRequest?.song?.title ? (
           <div className='card w-full h-full bg-base-100 shadow-xl image-full'>
             <figure>
-              <img src={activeSong?.images?.coverart} alt='Shoes' />
+              <img src={activeRequest?.song?.images?.coverart} alt='Shoes' />
             </figure>
             <div className='card-body h-full'>
-              <MusicPlayer />
+              <MusicPlayer handleSongPlayed={handleSongPlayed} />
             </div>
           </div>
         ) : (
@@ -68,9 +81,9 @@ const DjBooth = () => {
                   song={request.song}
                   i={i}
                   isPlaying={isPlaying}
-                  activeSong={activeSong}
+                  activeRequest={activeRequest}
                   handlePauseClick={handlePauseClick}
-                  handlePlayClick={() => handlePlayClick(request.song, i)}
+                  handlePlayClick={() => handlePlayClick(request, i)}
                 />
               ))
             )}

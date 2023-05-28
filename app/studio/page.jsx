@@ -13,7 +13,7 @@ const Discover = () => {
   const dispatch = useDispatch();
   const { currentDj } = useSelector((state) => state.core);
   const { genreListId } = useSelector((state) => state.player);
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeRequest, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetSongsByGenreQuery(
     genreListId || 'POP'
   );
@@ -56,7 +56,7 @@ const Discover = () => {
             key={song.key}
             song={song}
             isPlaying={isPlaying}
-            activeSong={activeSong}
+            activeRequest={activeRequest}
             data={data}
             i={i}
           />

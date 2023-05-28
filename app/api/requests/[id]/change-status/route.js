@@ -16,7 +16,7 @@ export const PATCH = async (request, { params }) => {
   //Only the DJ can change the status of a song request
   // We assume the DJ is the session user
   //Get the session user and user user id as the DJ id
-  const djId = 'TODO';
+  const djId = 'clhuq9lzz0000my14zmyefayv'; //TODO: this should come from the session
   try {
     await updateSongRequestStatus({
       songRequestId: id,

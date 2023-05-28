@@ -14,7 +14,7 @@ import { setActiveSong, playPause } from '@redux/features/playerSlice';
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeRequest, isPlaying } = useSelector((state) => state.player);
 
   const {
     data,
@@ -47,7 +47,7 @@ const MyProfile = () => {
         data={data}
         artistId={1}
         isPlaying={isPlaying}
-        activeSong={activeSong}
+        activeRequest={activeRequest}
         handlePauseClick={handlePauseClick}
         handlePlayClick={handlePlayClick}
       />

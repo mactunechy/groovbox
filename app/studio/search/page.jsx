@@ -10,7 +10,7 @@ import { useSearchParams } from 'next/navigation';
 const Search = () => {
   const params = useSearchParams();
   const searchTerm = params.get('searchTerm') || '';
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeRequest, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetSongsBySearchQuery(searchTerm);
 
   const songs = data?.tracks?.hits.map((song) => song.track);
@@ -32,7 +32,7 @@ const Search = () => {
             key={song.key}
             song={song}
             isPlaying={isPlaying}
-            activeSong={activeSong}
+            activeRequest={activeRequest}
             data={data}
             i={i}
           />

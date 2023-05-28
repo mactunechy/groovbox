@@ -2,7 +2,7 @@ import React from 'react';
 
 import SongBar from './SongBar';
 
-const RecentlyRequested = ({ data, artistId, isPlaying, activeSong }) => (
+const RecentlyRequested = ({ data, artistId, isPlaying, activeRequest }) => (
   <div className='flex flex-col'>
     <h1 className='font-bold text-3xl text-white'>Recently Requested</h1>
     <small className='text-base text-gray-400'>
@@ -17,7 +17,7 @@ const RecentlyRequested = ({ data, artistId, isPlaying, activeSong }) => (
           i={i}
           artistId={artistId}
           isPlaying={isPlaying}
-          activeSong={activeSong}
+          activeRequest={activeRequest}
         />
       ))}
     </div>

@@ -5,7 +5,7 @@ const initialState = {
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: {},
+  activeRequest: {},
   genreListId: '',
 };
 
@@ -14,7 +14,7 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     setActiveSong: (state, action) => {
-      state.activeSong = action.payload.song;
+      state.activeRequest = action.payload.song;
 
       if (action.payload?.data?.tracks?.hits) {
         state.currentSongs = action.payload.data.tracks.hits;
@@ -29,11 +29,7 @@ const playerSlice = createSlice({
     },
 
     nextSong: (state, action) => {
-      if (state.currentSongs[action.payload]?.track) {
-        state.activeSong = state.currentSongs[action.payload]?.track;
-      } else {
-        state.activeSong = state.currentSongs[action.payload];
-      }
+      state.activeRequest = state.currentSongs[action.payload];
 
       state.currentIndex = action.payload;
       state.isActive = true;
@@ -41,9 +37,9 @@ const playerSlice = createSlice({
 
     prevSong: (state, action) => {
       if (state.currentSongs[action.payload]?.track) {
-        state.activeSong = state.currentSongs[action.payload]?.track;
+        state.activeRequest = state.currentSongs[action.payload]?.track;
       } else {
-        state.activeSong = state.currentSongs[action.payload];
+        state.activeRequest = state.currentSongs[action.payload];
       }
 
       state.currentIndex = action.payload;

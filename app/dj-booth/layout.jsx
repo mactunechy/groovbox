@@ -3,7 +3,7 @@
 import { AppProvider } from '@components';
 
 export default function RootLayout({ children }) {
-  // const { activeSong } = useSelector((state) => state.player);
+  // const { activeRequest } = useSelector((state) => state.player);
 
   return (
     <AppProvider>

@@ -15,7 +15,7 @@ import { useParams } from 'next/navigation';
 const SongDetails = () => {
   const dispatch = useDispatch();
   const { id: songid } = useParams();
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeRequest, isPlaying } = useSelector((state) => state.player);
 
   const {
     data,
@@ -69,7 +69,7 @@ const SongDetails = () => {
       <RelatedSongs
         data={data}
         isPlaying={isPlaying}
-        activeSong={activeSong}
+        activeRequest={activeRequest}
         handlePauseClick={handlePauseClick}
         handlePlayClick={handlePlayClick}
       />

@@ -7,7 +7,7 @@ import { Error, Loader, SongCard } from '@components';
 import { useGetSongsByCountryQuery } from '@redux/services/shazamCore';
 
 const CountryTracks = () => {
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeRequest, isPlaying } = useSelector((state) => state.player);
 
   const { data, isFetching, error } = useGetSongsByCountryQuery();
 
@@ -27,7 +27,7 @@ const CountryTracks = () => {
             key={song.key}
             song={song}
             isPlaying={isPlaying}
-            activeSong={activeSong}
+            activeRequest={activeRequest}
             data={data.songs}
             i={i}
           />

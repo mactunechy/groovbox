@@ -15,8 +15,8 @@ import Track from './Track';
 import VolumeBar from './VolumeBar';
 import { BsVolumeUp } from 'react-icons/bs';
 
-const MusicPlayer = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } =
+const MusicPlayer = ({ handleSongPlayed }) => {
+  const { activeRequest, currentSongs, currentIndex, isActive, isPlaying } =
     useSelector((state) => state.player);
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
@@ -43,6 +43,8 @@ const MusicPlayer = () => {
   const handleNextSong = () => {
     dispatch(playPause(false));
 
+    handleSongPlayed();
+
     if (!shuffle) {
       dispatch(nextSong((currentIndex + 1) % currentSongs.length));
     } else {
@@ -66,7 +68,7 @@ const MusicPlayer = () => {
         <Track
           isPlaying={isPlaying}
           isActive={isActive}
-          activeSong={activeSong}
+          activeRequest={activeRequest}
         />
       </div>
 
@@ -93,7 +95,7 @@ const MusicPlayer = () => {
             appTime={appTime}
           />
           <Player
-            activeSong={activeSong}
+            activeRequest={activeRequest}
             volume={volume}
             isPlaying={isPlaying}
             seekTime={seekTime}
