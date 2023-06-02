@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
+import EnqueueSong from './EnqueueSong';
 
 const DetailsHeader = ({ artistId, artistData, songData }) => (
   <div className='relative w-full flex flex-col'>
@@ -37,6 +38,8 @@ const DetailsHeader = ({ artistId, artistData, songData }) => (
             ? artistData?.attributes?.genreNames[0]
             : songData?.genres?.primary}
         </p>
+
+        <EnqueueSong song={songData} />
       </div>
     </div>
 

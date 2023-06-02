@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   HiOutlineHashtag,
   HiOutlineHome,
@@ -25,7 +25,9 @@ const links = [
   { name: 'My Profile', to: '/studio/my-profile', icon: HiOutlineUser },
 ];
 
-const NavLinks = ({ handleClick }) => (
+const NavLinks: FC<{
+  handleClick?: () => void;
+}> = ({ handleClick }) => (
   <div className='mt-10'>
     {links.map((item) => (
       <Link

@@ -9,10 +9,12 @@ import { FreeMode } from 'swiper';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
 import { useGetTopChartsQuery } from '../redux/services/shazamCore';
 
-import 'swiper/css';
-import 'swiper/css/free-mode';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+
 import Link from 'next/link';
 import EnqueueSong from './EnqueueSong';
+import { BiAddToQueue } from 'react-icons/bi';
 
 const TopChartCard = ({ song, i, activeRequest }) => (
   <div
@@ -37,15 +39,19 @@ const TopChartCard = ({ song, i, activeRequest }) => (
           <p className='text-base text-gray-300 mt-1'>{song?.subtitle}</p>
         </Link>
       </div>
-    </div>
-    <EnqueueSong song={song} />
+    </div>{' '}
+    <Link href={`/studio/songs/${song?.key}/details`}>
+      <BiAddToQueue size={35} className='text-gray-300' />
+    </Link>
   </div>
 );
 
 const TopPlay = () => {
   const dispatch = useDispatch();
-  const { activeRequest, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetTopChartsQuery();
+  const { activeRequest, isPlaying } = useSelector(
+    (state: any) => state.player
+  );
+  const { data } = useGetTopChartsQuery(null);
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -82,10 +88,7 @@ const TopPlay = () => {
               key={song.key}
               song={song}
               i={i}
-              isPlaying={isPlaying}
               activeRequest={activeRequest}
-              handlePauseClick={handlePauseClick}
-              handlePlayClick={() => handlePlayClick(song, i)}
             />
           ))}
         </div>

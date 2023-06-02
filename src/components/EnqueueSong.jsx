@@ -1,16 +1,18 @@
 'use client';
 
-import { BiAddToQueue, BiErrorCircle } from 'react-icons/bi';
+import { BiErrorCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import DjDropdown from './DjDropdown';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
-import { useState } from 'react';
+import { BsSpeaker } from 'react-icons/bs';
 import { useRequestSongMutation } from '@redux/services/core';
 
 const EnqueueSong = ({ song }) => {
   const { currentDj } = useSelector((state) => state.core);
   const [requestSong, { isLoading, error, isSuccess, isError }] =
     useRequestSongMutation();
+
+  console.log('song', song);
 
   const submitRequest = () => {
     requestSong({ song, djId: currentDj.id });
@@ -22,18 +24,15 @@ const EnqueueSong = ({ song }) => {
         className='tooltip hover:tooltip-open tooltip-left'
         data-tip='request dj to play'
       >
-        <label htmlFor={`modal-${song.key}`}>
-          <BiAddToQueue size={35} className='text-gray-300' />
+        <label htmlFor='modal-enqueue-song' className='btn btn-primary  mt-3'>
+          <BsSpeaker className='mr-2' />
+          Add to active playlist
         </label>
       </div>
 
       {/* The button to open modal */}
       {/* Put this part before </body> tag */}
-      <input
-        type='checkbox'
-        id={`modal-${song.key}`}
-        className='modal-toggle'
-      />
+      <input type='checkbox' id='modal-enqueue-song' className='modal-toggle' />
       <div className='modal modal-bottom sm:modal-middle'>
         <div className='modal-box bg-purple-200'>
           {isSuccess ? (
@@ -49,7 +48,7 @@ const EnqueueSong = ({ song }) => {
                 </h3>
               </div>
               <div className='modal-action'>
-                <label htmlFor={`modal-${song.key}`} className='btn'>
+                <label htmlFor='modal-enqueue-song' className='btn'>
                   Close
                 </label>
               </div>
@@ -67,13 +66,13 @@ const EnqueueSong = ({ song }) => {
                 </h3>
               </div>
               <div className='modal-action'>
-                <label htmlFor={`modal-${song.key}`} className='btn'>
+                <label htmlFor='modal-enqueue-song' className='btn'>
                   Close
                 </label>
               </div>
             </>
           ) : (
-            <>
+            <div className='h-[300px]'>
               <h3 className='font-bold text-lg'>Song Request 🎶</h3>
               <p className='py-4'>
                 You're about to request
@@ -96,7 +95,7 @@ const EnqueueSong = ({ song }) => {
               )}
               <DjDropdown />
               <div className='modal-action'>
-                <label htmlFor={`modal-${song.key}`} className='btn'>
+                <label htmlFor='modal-enqueue-song' className='btn'>
                   Close
                 </label>
                 <button
@@ -107,7 +106,7 @@ const EnqueueSong = ({ song }) => {
                   {isLoading ? 'Requesting...' : 'Request'}
                 </button>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>

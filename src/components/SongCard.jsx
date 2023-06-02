@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { playPause, setActiveSong } from '@redux/features/playerSlice';
 import Link from 'next/link';
-import EnqueueSong from './EnqueueSong';
+import { BiAddToQueue } from 'react-icons/bi';
 
 const SongCard = ({ song, isPlaying, activeRequest, data, i }) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const SongCard = ({ song, isPlaying, activeRequest, data, i }) => {
   };
 
   return (
-    <div className='flex flex-col w-[300px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+    <div className='flex flex-col p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
       <div className='relative w-full h-56 group'>
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
@@ -27,7 +27,9 @@ const SongCard = ({ song, isPlaying, activeRequest, data, i }) => {
               : 'hidden'
           }`}
         >
-          <EnqueueSong song={song} />
+          <Link href={`/studio/songs/${song?.key}/details`}>
+            <BiAddToQueue size={35} className='text-gray-300' />
+          </Link>
         </div>
         <img
           alt='song_img'
@@ -37,10 +39,10 @@ const SongCard = ({ song, isPlaying, activeRequest, data, i }) => {
       </div>
 
       <div className='mt-4 flex flex-col'>
-        <p className='font-semibold text-lg text-white truncate'>
+        <p className='font-semibold text-lg text-white truncate w-[200px]'>
           <Link href={`/studio/songs/${song?.key}/details`}>{song.title}</Link>
         </p>
-        <p className='text-sm truncate text-gray-300 mt-1'>
+        <p className='text-sm truncate text-gray-300 mt-1 w-[200px]'>
           <Link
             href={
               song.artists

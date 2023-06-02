@@ -30,7 +30,11 @@ const Discover = () => {
         <div className='flex flex-col'>
           <h2 className='font-bold text-3xl text-white text-left flex-auto justify-end'>
             {currentDj ? (
-              currentDj.name
+              <>
+                <small className='text-gray-500 text-sm'>playing at</small>{' '}
+                <br />
+                {currentDj.name}
+              </>
             ) : (
               <>
                 No DJ selected

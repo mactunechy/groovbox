@@ -3,6 +3,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import EnqueueSong from './EnqueueSong';
+import { BiAddToQueue } from 'react-icons/bi';
 
 const SongBar = ({ song, i, artistId, activeRequest }) => (
   <div
@@ -40,7 +41,11 @@ const SongBar = ({ song, i, artistId, activeRequest }) => (
         </p>
       </div>
     </div>
-    {!artistId ? <EnqueueSong song={song} /> : null}
+    {!artistId ? (
+      <Link href={`/studio/songs/${song.key}/details`}>
+        <BiAddToQueue size={35} className='text-gray-300' />
+      </Link>
+    ) : null}
   </div>
 );
 
